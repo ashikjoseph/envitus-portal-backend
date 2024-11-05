@@ -76,11 +76,6 @@ const dashboardDataSchema = new mongoose.Schema({
     AQI: {
         type: String,
         required: true
-    },
-    prominentPollutant: {
-        type: String,
-        required: true,
-        enum: ['NO2', 'SO2', 'CO']
     }
 });
 
