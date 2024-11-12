@@ -1,12 +1,28 @@
+const mongoose = require('mongoose');
 
-const mongoose = require('mongoose')
+// Get the connection string from environment variables
+const connectionString = process.env.DATABASE;
 
+// Check if the connection string is missing
+if (!connectionString) {
+    console.error('Error: MongoDB connection string is missing!');
+    process.exit(1); // Exit the application with an error code
+}
 
-const connectionString = process.env.DATABASE
+// Log the connection string for debugging purposes
+console.log('MongoDB URI:', connectionString);
 
+// Set connection options
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+};
 
-mongoose.connect(connectionString).then((res)=>{
-    console.log("MongoDB connected successfully!!!")
-}).catch((err)=>{
-    console.log(`MongoDB connect failed due to ${err}`)
-})
+// Try to connect to MongoDB
+mongoose.connect(connectionString, options)
+    .then(() => {
+        console.log("MongoDB connected successfully!!!");
+    })
+    .catch((err) => {
+        console.error(`MongoDB connection failed due to ${err}`);
+    });
