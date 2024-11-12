@@ -8,7 +8,7 @@ const jwtMiddleware = (req, res, next) => {
     if (!token) {
         return res.status(401).json("Authorization token is missing.");
     }
-    console.log(token);
+  
     try {
         
         const jwtResponse = jwt.verify(token, process.env.JWT_SECRET_KEY);
