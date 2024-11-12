@@ -1,22 +1,18 @@
-
 const jwt = require('jsonwebtoken');
 
 // Default username and password 
 const DEFAULT_USERNAME = 'demouser1';
 const DEFAULT_PASSWORD = 'D@mo!24#';
 
-
 const JWT_SECRET = 'supersecretkey12345'; 
 
 // login
 exports.login = (req, res) => {
-    const { email, password } = req.body;
-
+    const { username, password } = req.body;  
     
-    if (email === DEFAULT_USERNAME && password === DEFAULT_PASSWORD) {
+    if (username === DEFAULT_USERNAME && password === DEFAULT_PASSWORD) {  
         
-        const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: '1h' });
-
+        const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '1h' });  
         
         return res.status(200).json({
             status: 'ok',
@@ -26,7 +22,6 @@ exports.login = (req, res) => {
         });
     }
 
-   
     return res.status(401).json({
         status: 'error',
         errorCode: 1,

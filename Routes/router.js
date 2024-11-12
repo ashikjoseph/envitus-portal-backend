@@ -16,7 +16,7 @@ const router = new express.Router();
 
 router.post('/login', userController.login)
 
-router.get('/device-list', deviceController.deviceList)
+router.get('/device-list',jwtMiddleware, deviceController.deviceList)
 
 router.get('/device/sensor/dashboardData',dashboardController.getDashboardData )
 
